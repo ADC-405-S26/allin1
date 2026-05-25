@@ -2,6 +2,9 @@
 
 export(drop_na_rows)
 export(sort_mutate)
+export(top_n_percent)
 importFrom(dplyr,arrange)
 importFrom(dplyr,desc)
+importFrom(dplyr,filter)
 importFrom(dplyr,mutate)
+importFrom(dplyr,n)
