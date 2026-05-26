@@ -21,9 +21,8 @@ Applies sort_mutate
 }
 \examples{
 library(dplyr)
-shapes <- data.frame(length = c(10, 5, 8), width = c(2, 4, 5))
-area_shapes <- shapes |> sort_mutate(length*width, desc = TRUE)
-area_shapes
+ranked_employees <- employees |> sort_mutate(hours_worked * hourly_wage, desc = TRUE)
+print(ranked_employees)
 
 # for now it doesn't show the new column, but it arranges according to the calculated area correctly
 }

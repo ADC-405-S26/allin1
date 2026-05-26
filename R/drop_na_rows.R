@@ -5,7 +5,9 @@
 #' @returns A dataframe with empty rows removed
 #' @export
 #'
-#' @examples #yes
+#' @examples
+#' clean_employees <-employees |> drop_na_rows
+#' clean_employees
 drop_na_rows <- function(.data) {
   checkmate::assert_data_frame(.data)
 

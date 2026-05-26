@@ -9,6 +9,7 @@
 #' @export
 #'
 #' @examples
+#' test_employees |> top_n_percent(hourly_wage, percent = 50)
 top_n_percent <- function(.data, col, percent) {
   checkmate::assert_data_frame(.data)
   checkmate::assert_number(percent, lower = 0, upper = 100)
