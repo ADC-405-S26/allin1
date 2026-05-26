@@ -17,7 +17,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-URL: https://github.com/ADC-405-S26/allin1
+URL: https://github.com/ADC-405-S26/allin1, https://adc-405-s26.github.io/allin1/
 Depends: 
     R (>= 3.5)
 LazyData: true
