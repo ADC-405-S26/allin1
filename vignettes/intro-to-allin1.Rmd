@@ -1,0 +1,33 @@
+---
+title: "Introduction to allin1"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to allin1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `allin1` provides convenience functions for some common tasks. To install this package from GitHub, use
+
+```{r, eval=FALSE}
+# install.packages("remotes")
+# install.packages("devtools")
+devtools::install_github("ADC-405-S26/allin1")
+```
+
+```{r setup}
+library(allin1)
+```
+
+The package contains three functions
+
+* `sort_mutate`
+* `drop_na_rows`
+* `top_n_percent`

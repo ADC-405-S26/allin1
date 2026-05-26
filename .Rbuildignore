@@ -6,3 +6,8 @@
 ^LICENSE\.md$
 ^data-raw$
 ^README\.Rmd$
+^allin1\.Rcheck$
+^allin1.*\.tar\.gz$
+^allin1.*\.tgz$
+^doc$
+^Meta$

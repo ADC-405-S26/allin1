@@ -5,3 +5,9 @@
 project.Rcheck/
 project*.tar.gz
 project*.tgz
+allin1.Rcheck/
+allin1*.tar.gz
+allin1*.tgz
+inst/doc
+/doc/
+/Meta/
