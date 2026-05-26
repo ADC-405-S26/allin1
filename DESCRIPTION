@@ -1,9 +1,9 @@
-Package: project
-Title: What the Package Does (One Line, Title Case)
+Package: allin1
+Title: Shortcuts For Longer Functions
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+    person("Muizz Aman", "Khan", , "khanm@lawrence.edu", role = c("aut", "cre"))
+Description: Provides shortcuts for more complex and tedious functions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -11,9 +11,13 @@ RoxygenNote: 8.0.0
 Imports: 
     checkmate,
     dplyr
-Suggests: 
+Suggests:
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+VignetteBuilder: knitr
+URL: https://github.com/ADC-405-S26/allin1
 Depends: 
     R (>= 3.5)
 LazyData: true

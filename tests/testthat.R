@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(project)
+library(allin1)
 
-test_check("project")
+test_check("allin1")
