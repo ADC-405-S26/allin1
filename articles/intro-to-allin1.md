@@ -20,3 +20,11 @@ The package contains three functions
 - `sort_mutate`
 - `drop_na_rows`
 - `top_n_percent`
+
+My main motivation comes from everyday problems with data wrangling.
+People like myself often find it quite tedious and may make silly
+mistakes while writing large chunks of code like a missing or open pipe
+operator, or a missing parameter in a function. My goal here was to make
+shortcuts to more lengthy functions in order to create a more
+user-friendly data wrangling experience for new and experienced data
+scientists alike.

@@ -76,13 +76,13 @@
 </h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">employees</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="reference/sort_mutate.html">sort_mutate</a></span><span class="op">(</span><span class="va">hours_worked</span> <span class="op">*</span> <span class="va">hourly_wage</span>, desc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      name hours_worked hourly_wage</span></span>
-<span><span class="co">#&gt; 1 Charlie           45          50</span></span>
-<span><span class="co">#&gt; 2   Alice           40          30</span></span>
-<span><span class="co">#&gt; 3     Bob           35          25</span></span>
-<span><span class="co">#&gt; 4   David           20          20</span></span>
-<span><span class="co">#&gt; 5    &lt;NA&gt;           NA          NA</span></span></code></pre></div>
+<span>  <span class="fu"><a href="reference/sort_mutate.html">sort_mutate</a></span><span class="op">(</span><span class="st">"earnings"</span>, <span class="va">hours_worked</span> <span class="op">*</span> <span class="va">hourly_wage</span>, desc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      name hours_worked hourly_wage earnings</span></span>
+<span><span class="co">#&gt; 1 Charlie           45          50     2250</span></span>
+<span><span class="co">#&gt; 2   Alice           40          30     1200</span></span>
+<span><span class="co">#&gt; 3     Bob           35          25      875</span></span>
+<span><span class="co">#&gt; 4   David           20          20      400</span></span>
+<span><span class="co">#&gt; 5    &lt;NA&gt;           NA          NA       NA</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="drop_na_rows-example">drop_na_rows example<a class="anchor" aria-label="anchor" href="#drop_na_rows-example"></a>
