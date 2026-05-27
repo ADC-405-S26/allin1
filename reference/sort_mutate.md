@@ -5,7 +5,7 @@ Applies sort_mutate
 ## Usage
 
 ``` r
-sort_mutate(.data, expr, desc = FALSE)
+sort_mutate(.data, new_col, expr, desc = FALSE)
 ```
 
 ## Arguments
@@ -13,6 +13,10 @@ sort_mutate(.data, expr, desc = FALSE)
 - .data:
 
   dataframe
+
+- new_col:
+
+  new column name
 
 - expr:
 
@@ -38,14 +42,13 @@ library(dplyr)
 #> The following objects are masked from ‘package:base’:
 #> 
 #>     intersect, setdiff, setequal, union
-ranked_employees <- employees |> sort_mutate(hours_worked * hourly_wage, desc = TRUE)
+ranked_employees <- employees |>
+  sort_mutate(new_col = "earnings", expr = hours_worked * hourly_wage, desc = TRUE)
 print(ranked_employees)
-#>      name hours_worked hourly_wage
-#> 1 Charlie           45          50
-#> 2   Alice           40          30
-#> 3     Bob           35          25
-#> 4   David           20          20
-#> 5    <NA>           NA          NA
-
-# for now it doesn't show the new column, but it arranges according to the calculated area correctly
+#>      name hours_worked hourly_wage earnings
+#> 1 Charlie           45          50     2250
+#> 2   Alice           40          30     1200
+#> 3     Bob           35          25      875
+#> 4   David           20          20      400
+#> 5    <NA>           NA          NA       NA
 ```

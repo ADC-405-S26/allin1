@@ -29,6 +29,8 @@ A filtered and sorted dataframe
 ## Examples
 
 ``` r
-test_employees |> top_n_percent(hourly_wage, percent = 50)
-#> Error: object 'test_employees' not found
+employees |> top_n_percent(hourly_wage, percent = 50)
+#>      name hours_worked hourly_wage
+#> 1 Charlie           45          50
+#> 2   Alice           40          30
 ```
