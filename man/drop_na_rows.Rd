@@ -16,6 +16,6 @@ A dataframe with empty rows removed
 Drop completely empty rows
 }
 \examples{
-clean_employees <-employees |> drop_na_rows
+clean_employees <-employees |> drop_na_rows()
 clean_employees
 }

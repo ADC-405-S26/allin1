@@ -4,10 +4,12 @@
 \alias{sort_mutate}
 \title{Applies sort_mutate}
 \usage{
-sort_mutate(.data, expr, desc = FALSE)
+sort_mutate(.data, new_col, expr, desc = FALSE)
 }
 \arguments{
 \item{.data}{dataframe}
+
+\item{new_col}{new column name}
 
 \item{expr}{expression, mathematical formula for your mutate}
 
@@ -21,8 +23,8 @@ Applies sort_mutate
 }
 \examples{
 library(dplyr)
-ranked_employees <- employees |> sort_mutate(hours_worked * hourly_wage, desc = TRUE)
+ranked_employees <- employees |>
+  sort_mutate(new_col = "earnings", expr = hours_worked * hourly_wage, desc = TRUE)
 print(ranked_employees)
 
-# for now it doesn't show the new column, but it arranges according to the calculated area correctly
 }

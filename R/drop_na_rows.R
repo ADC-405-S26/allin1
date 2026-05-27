@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' clean_employees <-employees |> drop_na_rows
+#' clean_employees <-employees |> drop_na_rows()
 #' clean_employees
 drop_na_rows <- function(.data) {
   checkmate::assert_data_frame(.data)

@@ -20,5 +20,5 @@ A filtered and sorted dataframe
 Extract the top percentage of rows based on a column
 }
 \examples{
-test_employees |> top_n_percent(hourly_wage, percent = 50)
+employees |> top_n_percent(hourly_wage, percent = 50)
 }
