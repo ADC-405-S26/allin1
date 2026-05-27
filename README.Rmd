@@ -41,7 +41,7 @@ library(allin1)
 
 ```{r}
 employees |> 
-  sort_mutate(hours_worked * hourly_wage, desc = TRUE)
+  sort_mutate("earnings", hours_worked * hourly_wage, desc = TRUE)
 ```
 
 #### drop_na_rows example

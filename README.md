@@ -32,13 +32,13 @@ library(allin1)
 
 ``` r
 employees |> 
-  sort_mutate(hours_worked * hourly_wage, desc = TRUE)
-#>      name hours_worked hourly_wage
-#> 1 Charlie           45          50
-#> 2   Alice           40          30
-#> 3     Bob           35          25
-#> 4   David           20          20
-#> 5    <NA>           NA          NA
+  sort_mutate("earnings", hours_worked * hourly_wage, desc = TRUE)
+#>      name hours_worked hourly_wage earnings
+#> 1 Charlie           45          50     2250
+#> 2   Alice           40          30     1200
+#> 3     Bob           35          25      875
+#> 4   David           20          20      400
+#> 5    <NA>           NA          NA       NA
 ```
 
 #### drop_na_rows example
