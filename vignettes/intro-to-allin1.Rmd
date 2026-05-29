@@ -80,7 +80,7 @@ drop_na_rows(df)
 na.omit(df)
 ```
 
-The base-R equivalent of `drop_na_rows()` is `df[rowSums(is.na(df)) < ncol(df), , drop = FALSE]` — correct, but verbose and easy to get wrong (forgetting `drop = FALSE` silently turns a one-column result into a vector).
+The base-R equivalent of `drop_na_rows()` is `df[rowSums(is.na(df)) < ncol(df), , drop = FALSE]` — correct, but clunky and easy to get wrong (forgetting `drop = FALSE` silently turns a one-column result into a vector).
 
 ### `top_n_percent()` vs `slice_max()`
 

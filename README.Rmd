@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `allin1` is to provide shortcuts for usually tedious functions
+The goal of `allin1` is to make everyday data wrangling in R less tedious. It bundles three small functions: `sort_mutate()`, `drop_na_rows()`, and `top_n_percent()`, that each collapse a common multi-step task into a single, readable call.
 
 ## Installation
 
