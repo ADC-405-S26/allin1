@@ -1,7 +1,13 @@
 # allin1
 
-The goal of `allin1` is to provide shortcuts for usually tedious
-functions
+The goal of `allin1` is to make everyday data wrangling in R less
+tedious. It bundles three small functions:
+[`sort_mutate()`](https://adc-405-s26.github.io/allin1/reference/sort_mutate.md),
+[`drop_na_rows()`](https://adc-405-s26.github.io/allin1/reference/drop_na_rows.md),
+and
+[`top_n_percent()`](https://adc-405-s26.github.io/allin1/reference/top_n_percent.md),
+that each collapse a common multi-step task into a single, readable
+call.
 
 ## Installation
 

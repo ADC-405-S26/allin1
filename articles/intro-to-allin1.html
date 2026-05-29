@@ -138,7 +138,7 @@ rows survive:</p>
 <span><span class="co">#&gt; 1 Alice    10</span></span></code></pre></div>
 <p>The base-R equivalent of <code><a href="../reference/drop_na_rows.html">drop_na_rows()</a></code> is
 <code>df[rowSums(is.na(df)) &lt; ncol(df), , drop = FALSE]</code> —
-correct, but verbose and easy to get wrong (forgetting
+correct, but clunky and easy to get wrong (forgetting
 <code>drop = FALSE</code> silently turns a one-column result into a
 vector).</p>
 </div>
