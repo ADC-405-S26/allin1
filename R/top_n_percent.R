@@ -15,7 +15,8 @@ top_n_percent <- function(.data, col, percent) {
   checkmate::assert_number(percent, lower = 0, upper = 100)
 
   # Calculate how many rows equal that percentage
-  num_rows <- max(1, round((percent / 100) * nrow(.data)))
+  # percent = 0 returns no rows; any positive percent returns at least 1.
+  num_rows <- if (percent == 0) 0L else max(1, round((percent / 100) * nrow(.data)))
 
   .data |>
     dplyr::arrange(dplyr::desc({{ col }})) |>

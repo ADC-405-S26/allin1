@@ -30,3 +30,10 @@ test_that("top_n_percent assertions catch out-of-bounds parameters", {
   # Expect error if percent is passed as a text string
   expect_error(top_n_percent(df, x, percent = "20"))
 })
+
+test_that("top_n_percent returns no rows when percent is 0", {
+  df <- data.frame(name = letters[1:10], score = 1:10)
+
+  # percent = 0 should return an empty data frame, not a single row
+  expect_equal(nrow(top_n_percent(df, score, percent = 0)), 0)
+})
