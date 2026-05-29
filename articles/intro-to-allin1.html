@@ -74,10 +74,88 @@ common tasks. To install this package from GitHub, use</p>
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ADC-405-S26/allin1" class="external-link">allin1</a></span><span class="op">)</span></span></code></pre></div>
 <p>The package contains three functions</p>
 <ul>
-<li><code>sort_mutate</code></li>
-<li><code>drop_na_rows</code></li>
-<li><code>top_n_percent</code></li>
+<li><p><code><a href="../reference/sort_mutate.html">sort_mutate()</a></code> — creates a new column from an
+expression and sorts the data frame by it in a single step. Sorts
+ascending by default, or descending with <code>desc = TRUE</code>. Think
+of it as <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate()</a></code> and <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">dplyr::arrange()</a></code>
+combined.</p></li>
+<li><p><code><a href="../reference/drop_na_rows.html">drop_na_rows()</a></code> — removes rows that are
+<em>completely</em> empty (every column is <code>NA</code>), while
+keeping rows that have at least one real value. Useful for clearing out
+blank rows without throwing away partially complete records.</p></li>
+<li><p><code><a href="../reference/top_n_percent.html">top_n_percent()</a></code> — returns the top <em>n</em> percent
+of rows ranked by a column, sorted highest to lowest. For example, the
+top 50% of employees by hourly wage. Passing <code>percent = 0</code>
+returns an empty data frame.</p></li>
 </ul>
+<div class="section level2">
+<h2 id="when-to-use-these-over-base-r">When to use these over base R<a class="anchor" aria-label="anchor" href="#when-to-use-these-over-base-r"></a>
+</h2>
+<p>Each function wraps a task you <em>can</em> already do in base R or
+dplyr — the point is fewer steps and fewer easy mistakes.</p>
+<div class="section level3">
+<h3 id="sort_mutate-vs-mutate-arrange">
+<code>sort_mutate()</code> vs <code>mutate()</code> +
+<code>arrange()</code><a class="anchor" aria-label="anchor" href="#sort_mutate-vs-mutate-arrange"></a>
+</h3>
+<p>Normally you’d compute a column and then sort by it in two separate
+calls, and it’s easy to forget the sort:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">employees</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>earnings <span class="op">=</span> <span class="va">hours_worked</span> <span class="op">*</span> <span class="va">hourly_wage</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">earnings</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><code><a href="../reference/sort_mutate.html">sort_mutate()</a></code> does both at once:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">employees</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/sort_mutate.html">sort_mutate</a></span><span class="op">(</span><span class="st">"earnings"</span>, <span class="va">hours_worked</span> <span class="op">*</span> <span class="va">hourly_wage</span>, desc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="drop_na_rows-vs-na-omit-is-na">
+<code>drop_na_rows()</code> vs <code>na.omit()</code> /
+<code>is.na()</code><a class="anchor" aria-label="anchor" href="#drop_na_rows-vs-na-omit-is-na"></a>
+</h3>
+<p>This is the important distinction. <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit()</a></code> drops a row
+if it has <em>any</em> <code>NA</code>. <code><a href="../reference/drop_na_rows.html">drop_na_rows()</a></code> only
+drops rows where <em>every</em> value is missing, so partially complete
+rows survive:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  name  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Alice"</span>, <span class="st">"Bob"</span>, <span class="cn">NA</span><span class="op">)</span>,</span>
+<span>  score <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>,       <span class="cn">NA</span>,    <span class="cn">NA</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># drop_na_rows() keeps Bob, he still has a name</span></span>
+<span><span class="fu"><a href="../reference/drop_na_rows.html">drop_na_rows</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    name score</span></span>
+<span><span class="co">#&gt; 1 Alice    10</span></span>
+<span><span class="co">#&gt; 2   Bob    NA</span></span>
+<span></span>
+<span><span class="co"># na.omit() removes Bob too, just because his score is missing</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    name score</span></span>
+<span><span class="co">#&gt; 1 Alice    10</span></span></code></pre></div>
+<p>The base-R equivalent of <code><a href="../reference/drop_na_rows.html">drop_na_rows()</a></code> is
+<code>df[rowSums(is.na(df)) &lt; ncol(df), , drop = FALSE]</code> —
+correct, but verbose and easy to get wrong (forgetting
+<code>drop = FALSE</code> silently turns a one-column result into a
+vector).</p>
+</div>
+<div class="section level3">
+<h3 id="top_n_percent-vs-slice_max">
+<code>top_n_percent()</code> vs <code>slice_max()</code><a class="anchor" aria-label="anchor" href="#top_n_percent-vs-slice_max"></a>
+</h3>
+<p><code><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">dplyr::slice_max()</a></code> can take a proportion, but
+<code><a href="../reference/top_n_percent.html">top_n_percent()</a></code> lets you think in whole percentages and
+returns exactly that many rows rather than expanding to include
+ties:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># dplyr: proportion as a fraction, and ties may add extra rows</span></span>
+<span><span class="va">employees</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">hourly_wage</span>, prop <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># allin1: a plain percentage, exact row count</span></span>
+<span><span class="va">employees</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/top_n_percent.html">top_n_percent</a></span><span class="op">(</span><span class="va">hourly_wage</span>, percent <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span></code></pre></div>
 <p>My main motivation comes from everyday problems with data wrangling.
 People like myself often find it quite tedious and may make silly
 mistakes while writing large chunks of code like a missing or open pipe
@@ -85,7 +163,10 @@ operator, or a missing parameter in a function. My goal here was to make
 shortcuts to more lengthy functions in order to create a more
 user-friendly data wrangling experience for new and experienced data
 scientists alike.</p>
-  </main>
+</div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
